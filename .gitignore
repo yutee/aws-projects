@@ -1,24 +1,21 @@
 # Ignore Terraform state files
-infrastructure/*.tfstate
-infrastructure/*.tfstate.*
-infrastructure/terraform.tfstate.backup
-infrastructure/terraform.tfstate.backup.*
+# 3tirf directory terraform
+03-3tier-architecture/*.tfstate
+03-3tier-architecture/*.tfstate.*
+03-3tier-architecture/terraform.tfstate.backup
+03-3tier-architecture/terraform.tfstate.backup.*
 
 # Ignore Terraform variables file
-infrastructure/terraform.tfvars
+03-3tier-architecture/terraform.tfvars
 
 # Ignore Terraform plugin directory
-infrastructure/.terraform/
+03-3tier-architecture/.terraform/
 
-infrastructure/terraform.lock.hcl
-infrastructure/.terraform.lock.hcl
+03-3tier-architecture/terraform.lock.hcl
+03-3tier-architecture/.terraform.lock.hcl
 
 # Ignore logs and temporary files
-infrastructure/*.log
-infrastructure/*.swp
+03-3tier-architecture/*.log
+03-3tier-architecture/*.swp
 
 # Ignore playground directory
-00-playground/
-
-tfplan
-infrastructure/tfplan.json

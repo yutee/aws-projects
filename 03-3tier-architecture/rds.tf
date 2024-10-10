@@ -2,10 +2,11 @@
 resource "aws_db_subnet_group" "default" {
   name       = "main"
   subnet_ids = [aws_subnet.database-subnet-1.id, aws_subnet.database-subnet-1.id]
-tags = {
+  tags = {
     Name = "My DB subnet group"
   }
 }
+
 resource "aws_db_instance" "default" {
   allocated_storage      = 10
   db_subnet_group_name   = aws_db_subnet_group.default.id
@@ -13,7 +14,7 @@ resource "aws_db_instance" "default" {
   engine_version         = "8.0.20"
   instance_class         = "db.t2.micro"
   multi_az               = true
-  name                   = "mydb"
+  db_name                = "mydb"
   username               = "username"
   password               = "password"
   skip_final_snapshot    = true
