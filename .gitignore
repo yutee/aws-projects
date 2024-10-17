@@ -1,4 +1,30 @@
+# Ignore playground directory
+playground
+
+# end
+
 # Ignore Terraform state files
+# s3 static website directory terraform
+01-s3-static-website/env/dev/*.tfstate
+01-s3-static-website/env/dev/*.tfstate.*
+01-s3-static-website/env/dev/terraform.tfstate.backup
+01-s3-static-website/env/dev/terraform.tfstate.backup.*
+
+# Ignore Terraform variables file
+01-s3-static-website/env/dev/terraform.tfvars
+
+# Ignore Terraform plugin directory
+01-s3-static-website/env/dev/.terraform/
+
+01-s3-static-website/env/dev/terraform.lock.hcl
+01-s3-static-website/env/dev/.terraform.lock.hcl
+
+# Ignore logs and temporary files
+01-s3-static-website/env/dev/*.log
+01-s3-static-website/env/dev/*.swp
+
+#end
+
 # 3tirf directory terraform
 03-3tier-architecture/*.tfstate
 03-3tier-architecture/*.tfstate.*
@@ -17,5 +43,3 @@
 # Ignore logs and temporary files
 03-3tier-architecture/*.log
 03-3tier-architecture/*.swp
-
-# Ignore playground directory
