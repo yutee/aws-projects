@@ -1,6 +1,6 @@
 # Ignore playground directory
 playground
-
+gs.sh
 # end
 
 # Ignore Terraform state files
@@ -24,6 +24,27 @@ playground
 01-s3-static-website/env/dev/*.swp
 
 #end
+
+# scalable webapp directory terraform
+02-scalable-webapp/env/dev/*.tfstate
+02-scalable-webapp/env/dev/*.tfstate.*
+02-scalable-webapp/env/dev/terraform.tfstate.backup
+02-scalable-webapp/env/dev/terraform.tfstate.backup.*
+
+# Ignore Terraform variables file
+02-scalable-webapp/env/dev/terraform.tfvars
+
+# Ignore Terraform plugin directory
+02-scalable-webapp/env/dev/.terraform/
+
+02-scalable-webapp/env/dev/terraform.lock.hcl
+02-scalable-webapp/env/dev/.terraform.lock.hcl
+
+# Ignore logs and temporary files
+02-scalable-webapp/env/dev/*.log
+02-scalable-webapp/env/dev/*.swp
+
+# end
 
 # 3tirf directory terraform
 03-3tier-architecture/*.tfstate
