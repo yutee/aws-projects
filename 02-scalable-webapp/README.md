@@ -1,4 +1,4 @@
-# Day 26: Build a Scalable Web Application with Auto Scaling on AWS
+# Scalable Web Application with Auto Scaling on AWS
 
 ## Overview
 
