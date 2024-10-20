@@ -64,3 +64,22 @@ gs.sh
 # Ignore logs and temporary files
 03-3tier-architecture/*.log
 03-3tier-architecture/*.swp
+
+# budgetor directory terraform
+05-budgetor/*.tfstate
+05-budgetor/*.tfstate.*
+05-budgetor/terraform.tfstate.backup
+05-budgetor/terraform.tfstate.backup.*
+
+# Ignore Terraform variables file
+# 05-budgetor/terraform.tfvars
+
+# Ignore Terraform plugin directory
+05-budgetor/.terraform/
+
+05-budgetor/terraform.lock.hcl
+05-budgetor/.terraform.lock.hcl
+
+# Ignore logs and temporary files
+05-budgetor/*.log
+05-budgetor/*.swp
