@@ -7,24 +7,69 @@ A 3-tier application is an application architecture where the application is div
 
 ### Architecture and Resources
 _Architecture diagram if the infrasctructure:_
-![architecture diagram](../images/3-tier_architecture.png)
+![architecture diagram](../images/3tier/architecture.png)
 
 As shown, several aws resources will be created using terrform, they include:
 __- VPC and Subnets:__ A virtual network and 6 subnets. Two public subnets for the presentation layer and 4 for the database and business logic. 3 will be deployed into two availability zones.
-__- EC2:__ Virtual machines deployed in public subnets and put behind a load balancer.
-__- Internet Gateway:__ A pathway for resourcesin the vpc to reach the internet securely
+__- EC2 and ASG:__ Virtual machines deployed in private subnets with the help of an ASG behind a load balancer.
 __- Load Balancer:__ Spread incoming traffic amongs the available frontend tier servers.
 __- Security Groups:__ To control traffic that gets to the public subnets where business and database tier is deployed.
-__- Relational Database Service:__ Created with replicas in different regions.
+__- Relational Database Service:__ Created with replicas in different availability zones and a read replica in a seperate region.
 
-### Terraform
-considering the many resources i had to create, i decided to use a separate file for each resource. this way i can keep track of what is what and easily understand the resources i am creating. essentially, modules would be used and all the reosurces can be group into two higher level modules, networking and compute.
+## Project Structure
+```
+project-root/
+├── modules/
+│   ├── ec2/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   ├── vpc/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   └── elb/
+│       ├── main.tf
+│       ├── variables.tf
+│       └── outputs.tf
+│   └── asg/
+│       ├── main.tf
+│       ├── variables.tf
+│       └── outputs.tf
+│   └── rds/
+│       ├── main.tf
+│       ├── variables.tf
+│       └── outputs.tf
+├── envs/
+│   └── dev/
+│       ├── main.tf
+│       ├── variables.tf
+│       └── terraform.tfvars
+├── backend.tf
+├── provider.tf
+└── variables.tf
+```
 
-### Possible Pmprovements?
-- [ ] Modularize the terraform code
-- [ ] Use Environments
-- [x] Ensure seperate availability zones for high availability
-- [ ] Use aws for remote backend
+### Deploying
+Clone the repo, update variables and set keys fro remote backend.
+Ensure to be on the `env/dev/` directory and then run:
+
+```bash
+terrafrom init
+terraform plan
+terraform apply -auto-approve
+```
+
+Upon apply sucess, these resources will be created:
+![screenshot](../images/3tier/vpc.png)
+![screenshot](../images/3tier/rds-sg.png)
+![screenshot](../images/3tier/rds.png)
+![screenshot](../images/3tier/rds-region.png)
+![screenshot](../images/3tier/rds-replica-region.png)
+
+### Further Steps
+- Modularize Appplication load balancer
+- Multi-Region replica feature
 
 ### Final words
-Building highly available infrasctructure can be a core, but with appropriate planning and leveraging Infrastructure as Code as we have seen, the seemingly herculean task can be a piece of cake. Now, there are still several improvements that can be made, as aws keep adding services, your team of engineers grow, your application scales or our business needs keep changing. But at the core, this setup is fully function and production ready.
+Building highly available infrasctructure can be a chore, but with appropriate planning and leveraging Infrastructure as Code as we have seen, the seemingly herculean task can be a piece of cake. Now, there are still several improvements that can be made, as aws keep adding services, your team of engineers grow, your application scales or our business needs keep changing. But at the core, this setup is fully function and production ready.
